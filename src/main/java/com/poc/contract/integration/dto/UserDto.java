@@ -1,4 +1,4 @@
-package com.poc.integration.model;
+package com.poc.contract.integration.dto;
 
 import java.io.Serializable;
 import lombok.Builder;
@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class User implements Serializable {
+public class UserDto implements Serializable {
 
   private Integer id;
   private String email;

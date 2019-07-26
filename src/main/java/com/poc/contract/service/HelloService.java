@@ -1,6 +1,6 @@
-package com.poc.integration.service;
+package com.poc.contract.service;
 
-import com.poc.integration.model.User;
+import com.poc.contract.model.User;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,4 +1,4 @@
-package com.poc.integration;
+package com.poc.contract;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
