@@ -1,7 +1,17 @@
 server:
   port: 8001
+spring:
+  application:
+    name: spring-contract
 
 feign:
+  name: userservice
+  url: http://localhost:9999
+  ribbon:
+    eureka:
+      enabled: false
+  hystrix:
+    enabled: false
   client:
     config:
       default:

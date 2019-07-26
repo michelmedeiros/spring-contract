@@ -1,0 +1,19 @@
+{
+  "request":
+  {
+    "urlPattern": "/user-service/users",
+    "method": "POST",
+    "bodyPatterns" : [{
+      "equalToJson" : "{ \"id\" : 1, \"name\" : \"Michel\", \"email\" : \"michel.tds@gmail.com\" }"
+    }]
+  },
+  "response":
+  {
+    "status": 201,
+    "headers":
+    {
+      "Content-Type" : "application/json"
+    },
+    "body": "{ \"id\" : 1, \"name\" : \"Michel\", \"email\" : \"michel.tds@gmail.com\" }"
+  }
+}

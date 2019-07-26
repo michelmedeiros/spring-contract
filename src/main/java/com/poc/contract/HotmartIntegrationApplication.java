@@ -6,10 +6,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableFeignClients
-public class HotmartIntegrationTestApplication {
+public class HotmartIntegrationApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HotmartIntegrationTestApplication.class, args);
+		SpringApplication.run(HotmartIntegrationApplication.class, args);
 	}
 
 }

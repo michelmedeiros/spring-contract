@@ -1,15 +1,23 @@
 package com.poc.contract;
 
+import static org.springframework.cloud.contract.wiremock.WireMockSpring.options;
+
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.tomakehurst.wiremock.junit.WireMockClassRule;
+import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import java.io.IOException;
 import java.io.Serializable;
 import org.junit.Before;
+import org.junit.ClassRule;
+import org.junit.Rule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.AutoConfigureJsonTesters;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.json.JacksonTester;
+import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
+import org.springframework.cloud.contract.wiremock.WireMockSpring;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -18,6 +26,7 @@ import org.springframework.test.context.ActiveProfiles;
 @AutoConfigureJsonTesters
 @DirtiesContext
 @ActiveProfiles("test")
+//@AutoConfigureWireMock(stubs="classpath:/mappings")
 public abstract class AbstractTest {
 
   @Autowired

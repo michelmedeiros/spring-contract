@@ -3,13 +3,16 @@ package com.poc.contract.controller;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
+import static org.springframework.cloud.contract.wiremock.WireMockSpring.options;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import com.poc.contract.AbstractTest;
 import com.poc.contract.model.User;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +24,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 @RunWith(SpringRunner.class)
-//@AutoConfigureStubRunner(workOffline = true, ids = "guru.springframework:game-api-producer:+:stubs:8090")
 public class HelloControllerTest extends AbstractTest {
 
   @Autowired
@@ -32,6 +34,8 @@ public class HelloControllerTest extends AbstractTest {
 
   public JacksonTester<User> json;
 
+  @Rule
+  public WireMockRule wireMockRule = new WireMockRule(options().port(9999));
 
   @Test
   public void successGetHello() throws Exception {
@@ -58,26 +62,17 @@ public class HelloControllerTest extends AbstractTest {
   @Test
   public void successPostHello() throws Exception {
 
-    mockMvc.perform(post("/hello")
-        .contentType(ContentType.JSON.getMimeType())
-        .content(json.write(User.builder()
-            .id(1)
-            .name("Michel")
-            .build()).getJson()))
-        .andExpect(status().isOk())
-        .andExpect(content().json("{'name':'Michel'}"))
-        .andExpect(content().json("{'id': 1}"));
-
-
     final MvcResult mvcResult =   mockMvc.perform(post("/hello")
         .contentType(ContentType.JSON.getMimeType())
         .content(json.write(User.builder()
             .id(1)
             .name("Michel")
+            .email("michel.tds@gmail.com")
             .build()).getJson()))
         .andReturn();
 
     assertThat(mvcResult.getResponse().getStatus(), equalTo(200));
     assertThat(mvcResult.getResponse().getContentAsString(), containsString("Michel"));
   }
+
 }
